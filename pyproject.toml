@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=67.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "trufflehog-sarif"
+version = "0.1.0"
+description = "Convert TruffleHog JSON output into SARIF 2.1.0 for code scanning platforms."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [
+  { name = "TruffleHog-SARIF Contributors" }
+]
+keywords = ["trufflehog", "sarif", "security", "secrets", "cli"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Information Technology",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Security",
+  "Topic :: Software Development :: Quality Assurance",
+  "Environment :: Console"
+]
+dependencies = []
+
+[project.scripts]
+trufflehog-sarif = "trufflehog_sarif.converter:main"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.4",
+  "ruff>=0.1.7",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+trufflehog_sarif = ["sarif-2.1.0.json"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.pytest.ini_options]
+addopts = "-q --color=yes"
+testpaths = ["tests"]
