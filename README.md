@@ -1,13 +1,13 @@
 # TruffleHog-SARIF
 
-Convert TruffleHog `--json` output into SARIF 2.1.0 so findings can be pushed into GitHub Code Scanning or any SARIF-compatible platform.
+Convert TruffleHog `--json` output into SARIF (latest; currently 2.1.0) so findings can be pushed into GitHub Code Scanning or any SARIF-compatible platform.
 
 ## Features
-- Reads TruffleHog JSON (array or NDJSON) and produces valid SARIF 2.1.0.
+- Reads TruffleHog JSON (array or NDJSON) and produces valid SARIF (current schema).
 - CLI works locally or inside Docker with `trufflehog-sarif`.
 - Accepts stdin/stdout for piping or file paths for batch jobs; CI-friendly.
 - Adds contextual properties (redacted secret, commit metadata, verification flag) to SARIF results.
-- Bundles the SARIF 2.1.0 schema (`src/trufflehog_sarif/sarif-2.1.0.json`) for offline validation; update from schema store when a new SARIF version is released.
+- Bundles the SARIF schema (`src/trufflehog_sarif/sarif-2.1.0.json`) for offline validation; update from schema store when a new SARIF version is released.
 
 ## Install & Run (local)
 ```bash
@@ -72,7 +72,7 @@ pytest
 
 ## References
 - TruffleHog: https://github.com/trufflesecurity/trufflehog
-- SARIF 2.1.0 spec: https://github.com/oasis-tcs/sarif-spec
+- SARIF spec: https://github.com/oasis-tcs/sarif-spec
 - Project repo: https://github.com/narendra486/trufflehog-sarif
 
 ## License
