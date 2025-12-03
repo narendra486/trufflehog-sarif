@@ -36,6 +36,11 @@ Build locally:
 docker build -t trufflehog-sarif .
 ```
 
+Pull prebuilt image:
+```bash
+docker pull narendrapalla486/trufflehog-sarif:latest
+```
+
 Convert a report:
 ```bash
 docker run --rm -v "$(pwd)":/data trufflehog-sarif \
