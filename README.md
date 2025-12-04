@@ -8,6 +8,7 @@ Convert TruffleHog `--json` output into SARIF (latest; currently 2.1.0) so findi
 - Accepts stdin/stdout for piping or file paths for batch jobs; CI-friendly.
 - Adds contextual properties (redacted secret, commit metadata, verification flag) to SARIF results.
 - Bundles the SARIF schema (`src/trufflehog_sarif/sarif-2.1.0.json`) for offline validation; update from schema store when a new SARIF version is released.
+- Adds stable fingerprints and partial fingerprints so code-scanning platforms can track/re-surface alerts; fingerprint is derived from detector, path, line, secret snippet, and commit hash.
 
 ## Install & Run (local)
 ```bash

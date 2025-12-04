@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import hashlib
 import sys
 from typing import Any, Dict, Iterable, List, Mapping, MutableMapping, Optional
 
@@ -209,6 +210,21 @@ def convert_to_sarif(
             if line:
                 physical_location["region"] = {"startLine": line}
             result["locations"] = [{"physicalLocation": physical_location}]
+
+        # Stable fingerprints help code scanning platforms track or re-surface alerts.
+        base_fingerprint = "|".join(
+            str(part)
+            for part in (
+                detector,
+                path or "",
+                line or "",
+                redacted or raw or "",
+                commit_info.get("hash", ""),
+            )
+        )
+        digest = hashlib.sha256(base_fingerprint.encode()).hexdigest()
+        result["fingerprints"] = {"trufflehogHash": digest}
+        result["partialFingerprints"] = {"uniqueId": digest}
 
         results.append(result)
 
